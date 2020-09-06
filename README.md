@@ -1,1 +1,2 @@
-# blogs.github.io
+# Blog WebApp
+A website where user is required 
