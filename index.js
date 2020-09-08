@@ -13,11 +13,11 @@ const session = require('express-session');
 const path = require('path');
 const multer = require('multer');
 
-const PORT = process.env.PORT || 3000;
 
 
 
-mongoose.connect('mongodb://localhost/blog',{useUnifiedTopology: true, useNewUrlParser: true , useCreateIndex: true })
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/blog',{useUnifiedTopology: true, useNewUrlParser: true , useCreateIndex: true })
 
 dotenv.config();
 
@@ -93,7 +93,7 @@ app.use((req,res,next)=>{
 });
 
 
-mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology: true});       // useNewUrlParser --> removes warning messages
+mongoose.connect(process.env.MONGODB_URI || url,{useNewUrlParser:true,useUnifiedTopology: true});     // useNewUrlParser --> removes warning messages
 const con = mongoose.connection;
 
 con.on('open',function(){               // to check if its connected to server 
@@ -124,6 +124,6 @@ app.use('/articles', articlerouter)
 
 
 
-
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT,()=>(console.log(`Server running... ${PORT}`)));
