@@ -13,6 +13,8 @@ const session = require('express-session');
 const path = require('path');
 const multer = require('multer');
 
+const PORT = process.env.PORT || 3000;
+
 
 
 mongoose.connect('mongodb://localhost/blog',{useUnifiedTopology: true, useNewUrlParser: true , useCreateIndex: true })
@@ -123,4 +125,5 @@ app.use('/articles', articlerouter)
 
 
 
-app.listen(3000,()=>(console.log('Server running...')));
+
+app.listen(PORT,()=>(console.log(`Server running... ${PORT}`)));
